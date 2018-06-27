@@ -65,7 +65,7 @@ exports.mapLocationOnHole = function(zoomOffSet, hole, plyr, golfCourse) {
   let latlng = {};
   // let hole = Hole - 1
 
-  console.log("mloh: hole->", hole, zoomOffSet, plyr, holeMapIndex[hole]);
+  // console.log("mloh: hole->", hole, zoomOffSet, plyr, holeMapIndex[hole]);
   if (plyr.HoleLocation === "TEE") {
 
     // 1st, create the center point for the template
