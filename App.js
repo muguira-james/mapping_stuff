@@ -1,3 +1,9 @@
+//
+// Main appilication entry point.
+// set graphql as a data provider 
+//
+// use mobile map as a back drop and display players over
+//
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import ShowMap from './ShowMap'
@@ -13,7 +19,7 @@ import { InMemoryCache } from 'apollo-cache-inmemory'
 // setup the communications link. This is going to point to a 
 // graphql server instance.  
 const httpLink = new HttpLink({ uri: 'http://localhost:4000' })
-// const httpLink = new HttpLink({ uri:  "http://localhost:3000/playground"})
+
 
 // 3
 // use the http protocol and use an in memory cache

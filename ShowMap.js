@@ -55,6 +55,8 @@ class ShowMap extends React.Component {
   //
   // setupPlayer2Draw manages the id for the selected player,
   // it also gets info for the hole, and icon
+  //
+  // PROTECT against the backend providing bogus information as best we can
   setupPlayer2Draw = plyr => {
     let playerInfo = {};
 
@@ -94,11 +96,14 @@ class ShowMap extends React.Component {
     return playerInfo;
   };
 
+  // now that the map is fully init'ed set initial region to view
   handleMapReady= () => {
     this.setState({region: this.props.region})
     
-    console.log("map is ready")
+    // console.log("map is ready")
   }
+
+  // part of cluster map: style the cluster view and enable tapping
   renderCluster = (cluster, onPress) => {
     return (
       <Marker
@@ -116,6 +121,8 @@ class ShowMap extends React.Component {
     )
   }
 
+
+  // part of cluster map: style the individual markers
   renderMarker = (markerData) => (
     <Marker
       key={`c_${markerData.ID}`}
@@ -126,6 +133,9 @@ class ShowMap extends React.Component {
       coordinate={markerData.location}>
     </Marker>
   )
+
+  // 
+  // gather the markers to draw
   render = () => {
     playerDrawingUtils.mapLocationClear();
     // 1 loading
@@ -234,49 +244,3 @@ const styles = StyleSheet.create({
     color: 'white',
   },
 })
-
-/*
-
-      return (
-        <MapView
-          style={{ flex: 1 }}
-          provider={null}
-          region={this.state.region}
-          mapType={this.state.mapType}
-          onMapReady={() => {this.handleMapReady()}}
-        >
-          {
-            Object.keys(flagImages).map((f, index) => {
-              console.log("f->", flagImages[f])
-              return (
-                <Marker
-                  key={index + 80}
-                  coordinate={golfCourse.Features[index].properties.FlagLocation}
-                  image={flagImages[f]}
-                >
-                  
-                </Marker>
-              )
-            })
-          }
-          {
-            this.props.zData.players.map(p => {
-              console.log("g->", p)
-              let pi = this.setupPlayer2Draw(p)
-              console.log("g->", pi, p)
-              let b = playerDrawingUtils.mapLocationOnHole(0, pi.Hole, p, golfCourse);
-              return (
-                <Marker 
-                  key={p.ID}
-                  image={pi.icon}
-                  coordinate={b}
-                />
-              )
-            })
-          }
-          
-        </MapView>
-        )
-
-
-        */
